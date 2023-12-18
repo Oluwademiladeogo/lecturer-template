@@ -23,20 +23,22 @@ const handleMessage = async (messageObj) => {
   try {
     const chatId = messageObj.chat.id;
     if (messageObj.text.charAt(0) === "/") {
-        const command = messageText.substr(1);
-        switch (command) {
-            case "start":
-                return sendMessage(chatId, "Hey, I'm a bot that helps you easily get access to your intended Covenant University lecturers")
-        
-            default:
-                return sendMessage(chatId, "Sorry, I don't know that command")
-        }
-    }
-    else{
-        sendMessage(chatId, messageText)
+      const command = messageText.substr(1);
+      switch (command) {
+        case "start":
+          return sendMessage(
+            chatId,
+            "Hey, I'm a bot that helps you easily get access to your intended Covenant University lecturers"
+          );
+
+        default:
+          return sendMessage(chatId, "Sorry, I don't know that command");
+      }
+    } else {
+      sendMessage(chatId, messageText);
     }
   } catch (error) {
     errorHandler(error, "handleMessage");
   }
 };
-module.exports= {sendMessage, handleMessage}
+module.exports = { sendMessage, handleMessage };
