@@ -2,11 +2,12 @@ const { getAxiosInstance } = require("./axios");
 const { errorHandler } = require("./helper");
 require("dotenv").config();
 const bot_token = process.env.TEL_TOKEN;
+console.log(bot_token)
 const BASE_URI = `https://api.telegram.org/bot${bot_token}`;
 const axiosInstance = getAxiosInstance(BASE_URI);
 function sendMessage(chatId, messageText) {
   return axiosInstance
-    .get("sendMessage", {
+    .post("sendMessage", {
       chat_id: chatId || MY_GROUP_CHAT_ID,
       text: messageText,
     })
@@ -35,7 +36,7 @@ const handleMessage = async (messageObj) => {
           return sendMessage(chatId, "Sorry, I don't know that command");
       }
     } else {
-      sendMessage(chatId, messageText);
+     return sendMessage(chatId, messageText);
     }
   } catch (error) {
     errorHandler(error, "handleMessage");
