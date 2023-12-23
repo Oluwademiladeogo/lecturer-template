@@ -1,10 +1,10 @@
 const express = require("express");
+const { handler } = require("../controller");
 const router = express.Router();
-router.get("/", (req, res) => {
-  res.send("hi");
+router.get("*", async(req, res) => {
+    res.send(await handler(req, "GET"))
 });
-router.post("/", (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+router.post("*", async(req, res) => {
+  res.send(await handler(req, "POST"))
 });
 module.exports = router;
